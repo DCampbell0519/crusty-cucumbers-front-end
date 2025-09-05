@@ -2,6 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { signUp } from "../../services/authService.js";
 
 const SignUpForm = () => {
   const navigate = useNavigate();
