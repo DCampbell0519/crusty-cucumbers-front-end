@@ -30,7 +30,7 @@ const SignUpForm = () => {
     event.preventDefault();
     try {
       const newUser = await signUp(formData);
-      setUser(newUser);
+      // setUser(newUser);
       console.log(newUser);
       navigate("/");
     } catch (error) {
