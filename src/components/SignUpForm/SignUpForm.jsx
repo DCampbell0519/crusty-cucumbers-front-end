@@ -1,8 +1,8 @@
 import React from "react";
-import { useContext } from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import { signUp } from "../../services/authService.js";
+import { UserContext } from "../../contexts/UserContext.jsx";
 
 const SignUpForm = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const SignUpForm = () => {
     passwordConf: "",
   });
 
-  // const { setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
 
   const { firstName, lastName, email, username, password, passwordConf } =
     formData;
@@ -30,7 +30,7 @@ const SignUpForm = () => {
     event.preventDefault();
     try {
       const newUser = await signUp(formData);
-      // setUser(newUser);
+      setUser(newUser);
       console.log(newUser);
       navigate("/");
     } catch (error) {
