@@ -54,7 +54,12 @@ const signIn = async (formData) => {
     }
 }
 
+const signOut = () => {
+    localStorage.removeItem('token')
+}
+
 export {
     signUp,
     signIn,
+    signOut,
 }
