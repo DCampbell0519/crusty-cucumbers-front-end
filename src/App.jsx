@@ -8,6 +8,7 @@ import SignInForm from "./components/SignInForm/SignInForm.jsx";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
 import ProfilePage from "./components/ProfilePage/ProfilePage.jsx";
 import Dashboard from "./components/Dashboard/Dashboard.jsx";
+import Landing from "./components/Landing/Landing.jsx";
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
     <>
     <NavBar />
       <Routes>
-        <Route path='/' element={<ProtectedRoute><Dashboard /></ProtectedRoute>}></Route>
+        <Route path='/' element={user ? <Dashboard /> : <Landing />} />
         <Route path='/sign-up' element={<SignUpForm />}/>
         <Route path='/sign-in' element={<SignInForm />}/>
         <Route path='/profile' element={<ProtectedRoute><ProfilePage /></ProtectedRoute>}></Route>
