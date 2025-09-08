@@ -126,7 +126,6 @@ const SignUpForm = () => {
             name="bio"
             value={bio}
             onChange={handleChange}
-            required
           />
         </div>
         <div>
