@@ -110,8 +110,9 @@ const MovieDetails = () => {
         {totalReviews === 0 && (
           <p className="section__empty">No reviews yet. Be the first to review this movie.</p>
         )}
-
+        <button className="reviews_add">+ Add Review</button>
       </section>
+
     </main>
   )
 }
