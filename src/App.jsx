@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 import { UserContext } from "./contexts/UserContext.jsx";
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar.jsx";

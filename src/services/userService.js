@@ -8,7 +8,7 @@ const index = async () => {
             } 
         })
 
-        const data = res.json();
+        const data = await res.json();
 
         if (data.error) {
             throw new Error(data.error)
@@ -20,6 +20,28 @@ const index = async () => {
     }
 }
 
+const getMyProfile = async () => {
+    try {
+        const res = await fetch(`${BASE_URL}/profile`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+
+        const data = await res.json();
+
+        if (data.error) {
+            throw new Error(data.error)
+        }
+
+        console.log(data)
+        return data;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export {
     index,
+    getMyProfile,
 }
