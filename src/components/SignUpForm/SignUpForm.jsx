@@ -8,17 +8,19 @@ const SignUpForm = () => {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
     email: "",
     username: "",
     password: "",
     passwordConf: "",
+    favoriteMovieQuote: "",
+    bio: "",
+    age: "",
+    profilePhoto: "",
   });
 
   const { setUser } = useContext(UserContext);
 
-  const { firstName, lastName, email, username, password, passwordConf } =
+  const { email, username, password, passwordConf, favoriteMovieQuote, bio, age, profilePhoto } =
     formData;
 
   const handleChange = (event) => {
@@ -40,8 +42,6 @@ const SignUpForm = () => {
 
   const isFormInvalid = () => {
     return !(
-      firstName &&
-      lastName &&
       email &&
       username &&
       password &&
@@ -55,23 +55,12 @@ const SignUpForm = () => {
       <p>{message}</p>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="firstName">First Name:</label>
+          <label htmlFor="username">Username:</label>
           <input
             type="text"
-            id="firstName"
-            name="firstName"
-            value={firstName}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="lastName">Last Name:</label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            value={lastName}
+            id="username"
+            name="username"
+            value={username}
             onChange={handleChange}
             required
           />
@@ -83,17 +72,6 @@ const SignUpForm = () => {
             id="email"
             name="email"
             value={email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={username}
             onChange={handleChange}
             required
           />
@@ -118,6 +96,47 @@ const SignUpForm = () => {
             value={passwordConf}
             onChange={handleChange}
             required
+          />
+        </div>
+        <div>
+          <label htmlFor="age">Age:</label>
+          <input
+            type="number"
+            id="age"
+            name="age"
+            value={age}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="favoriteMovieQuote">Favorite Movie Quote:</label>
+          <input
+            type="text"
+            id="favoriteMovieQuote"
+            name="favoriteMovieQuote"
+            value={favoriteMovieQuote}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="bio">Personal Bio:</label>
+          <input
+            type="text"
+            id="bio"
+            name="bio"
+            value={bio}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="profilePhoto">Profile Photo URL:</label>
+          <input
+            type="text"
+            id="profilePhoto"
+            name="profilePhoto"
+            value={profilePhoto}
+            onChange={handleChange}
           />
         </div>
         <div>
