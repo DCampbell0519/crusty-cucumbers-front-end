@@ -21,6 +21,7 @@ function App() {
         <Route path='/' element={user ? <Dashboard /> : <Landing />} />
         <Route path='/sign-up' element={<SignUpForm />}/>
         <Route path='/sign-in' element={<SignInForm />}/>
+        {/* <Route path='/profile' element={<ProfilePage />}></Route> */}
         <Route path='/profile' element={<ProtectedRoute><ProfilePage /></ProtectedRoute>}></Route>
       </Routes>
     </>
