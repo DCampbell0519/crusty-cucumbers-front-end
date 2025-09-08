@@ -1,5 +1,5 @@
 import { useContext, useEffect, useMemo, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link } from "react-router"
 import { UserContext } from "../../contexts/UserContext"
 import { index as fetchUsersIndex } from "../../services/userService"
 
