@@ -67,7 +67,7 @@ const MovieDetails = () => {
       const fallback = "/assets/no-poster.png";
 
       return (
-    <main className="details">
+```    <main className="details">
       <nav className="details__nav">
         <Link to="/" className="details__back">← Back to Movies</Link>
       </nav>
@@ -137,4 +137,6 @@ const MovieDetails = () => {
   );
 };
 
-export default MovieDetails;
+export default MovieDetails;`
+
+import './MovieDetails.css';
