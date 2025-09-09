@@ -42,32 +42,27 @@ const getMyProfile = async () => {
 };
 
 const updateMyProfile = async (profileData) => {
-    try {
-        const res = await fetch(`${BASE_URL}/profile`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
-            },
-            body: JSON.stringify(profileData)
-        });
+  try {
+    const res = await fetch(`${BASE_URL}/profile`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(profileData),
+    });
 
-        const data = await res.json();
+    const data = await res.json();
 
-        if (data.error) {
-            throw new Error(data.error)
-        }
-
-        console.log(data)
-        return data;
-    } catch (error) {
-        console.log(error)
+    if (data.error) {
+      throw new Error(data.error);
     }
-}
 
-export {
-    index,
-    getMyProfile,
-    updateMyProfile,
-}
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
+export { index, getMyProfile, updateMyProfile };
