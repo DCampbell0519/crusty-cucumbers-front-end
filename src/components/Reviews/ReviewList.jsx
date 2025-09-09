@@ -1,14 +1,18 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../contexts/UserContext.jsx";
 import { getReviews, deleteReview } from "../../services/reviewService.js";
-import ReviewForm from "./ReviewForm.jsx";
+
+
+const API_BASE = import.meta.env.VITE_BACK_END_URL || "";
 
 const ReviewList = ({ movieId }) => {
   const { user } = useContext(UserContext);
   const [reviews, setReviews] = useState([]);
+  const [movie, setMovie] = useState(null);
   const [editingReviewId, setEditingReviewId] = useState(null);
   const [error, setError] = useState("");
 
+  // Fetch reviews
   const fetchReviews = async () => {
     try {
       const data = await getReviews(movieId);
@@ -18,7 +22,20 @@ const ReviewList = ({ movieId }) => {
     }
   };
 
+  // Fetch movie details
+  const fetchMovie = async () => {
+    try {
+      const res = await fetch(`${API_BASE}/api/movies/${movieId}`);
+      if (!res.ok) throw new Error("Failed to fetch movie details");
+      const data = await res.json();
+      setMovie(data);
+    } catch (err) {
+      setError(err.message || "Failed to load movie details");
+    }
+  };
+
   useEffect(() => {
+    fetchMovie();
     fetchReviews();
   }, [movieId]);
 
@@ -47,8 +64,21 @@ const ReviewList = ({ movieId }) => {
 
   return (
     <section>
-      <h3>Reviews</h3>
       {error && <p style={{ color: "red" }}>{error}</p>}
+
+      {/* Display movie info */}
+      {movie && (
+        <div style={{ marginBottom: "1rem" }}>
+          <h2>{movie.title} {movie.year ? `(${movie.year})` : ""}</h2>
+          <img
+            src={movie.posterUrl || "/assets/no-poster.png"}
+            alt={movie.title}
+            style={{ maxWidth: "200px", borderRadius: "8px" }}
+          />
+        </div>
+      )}
+
+      <h3>Reviews</h3>
       {reviews.length === 0 && <p>No reviews yet.</p>}
       <ul style={{ listStyle: "none", padding: 0 }}>
         {reviews.map((review) =>
@@ -62,7 +92,14 @@ const ReviewList = ({ movieId }) => {
               />
             </li>
           ) : (
-            <li key={review._id} style={{ marginBottom: "1rem", borderBottom: "1px solid #ccc", paddingBottom: "0.5rem" }}>
+            <li
+              key={review._id}
+              style={{
+                marginBottom: "1rem",
+                borderBottom: "1px solid #ccc",
+                paddingBottom: "0.5rem",
+              }}
+            >
               <p>
                 <strong>{review.userId?.username || "Unknown User"}</strong> rated: {review.rating}/10
               </p>
@@ -73,7 +110,10 @@ const ReviewList = ({ movieId }) => {
               {user && user._id === review.userId?._id && (
                 <>
                   <button onClick={() => handleEditClick(review._id)}>Edit</button>
-                  <button onClick={() => handleDelete(review._id)} style={{ marginLeft: "0.5rem" }}>
+                  <button
+                    onClick={() => handleDelete(review._id)}
+                    style={{ marginLeft: "0.5rem" }}
+                  >
                     Delete
                   </button>
                 </>
