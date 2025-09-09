@@ -1,12 +1,30 @@
-# React + Vite
+![Grumpy looking cucumber hovering above the words, Crusty Cucumbers](https://i.imgur.com/MKjIZrP.png)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description:
+Crusty Cucumbers is a stylish and simple app for collecting and reviewing some of your favorite (and not so favorite) movies and tv shows.  And we know what you may be thinking, "We prefer tomatoes".  We say that's fair, but at least here, you don't need to worry about moderation.  It's probably because we're not as popular yet, but still... 
 
-Currently, two official plugins are available:
+## Getting Started:
+- Clone the repo to your local repository
+- Install dependencies
+- Set up your back-end connection with a ```.env``` file.  Add the following to said file: ```VITE_BACK_END_URL=http://localhost:3000```
+- Run the development server: ```npm run dev```  
+- Server will run on http://localhost:5173
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used:
+- React
+- React Router 
+- CORS
+- JavaScript
+- HTML
+- CSS
+- Netlify
 
-## Expanding the ESLint configuration
+## Stretch Goals:
+- Create a Community Page, that would allow a logged in user to view other users in the database, view their profiles, which movies they've reviewed, comment on other people's reviews, etc.
+- A light mode/dark mode toggle button.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Links: 
+- [Crusty Cucumbers Front End on Netlify](https://crusty-cucumbers.netlify.app/)
+- [Planning Materials, Wireframes, ERD](https://trello.com/b/ZFN2Kx8r/project-3-movie-app-crusty-cucumbers)
+- [GitHub](https://github.com/DCampbell0519/crusty-cucumbers-front-end)
+
