@@ -111,10 +111,31 @@ const MovieDetails = () => {
         {totalReviews === 0 && (
           <p className="section__empty">No reviews yet. Be the first to review this movie.</p>
         )}
-        <button className="reviews_add">+ Add Review</button>
+
+        {/* Show Add Review button only if user is logged in and form is not shown */}
+        {user && !showReviewForm && (
+          <button
+            className="reviews_add"
+            onClick={() => setShowReviewForm(true)}
+          >
+            + Add Review
+          </button>
+        )}
+
+        {/* Show the review form when toggled */}
+        {showReviewForm && (
+          <ReviewForm
+            movieId={movie._id || movie.imdbID}
+            onSuccess={() => setShowReviewForm(false)}
+            onCancel={() => setShowReviewForm(false)}
+          />
+        )}
+
+        {/* Show the list of reviews */}
+        <ReviewList movieId={movie._id || movie.imdbID} />
       </section>
     </main>
-  )
-}
+  );
+};
 
 export default MovieDetails;
