@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom"
 import ReviewList from "../Reviews/ReviewList.jsx";
 import ReviewForm from "../Reviews/ReviewForm.jsx";
 import { UserContext } from "../../contexts/UserContext.jsx";
+import './MovieDetails.css';
 
 
 const API_BASE = import.meta.env.VITE_BACK_END_URL || "";
@@ -67,30 +68,26 @@ const MovieDetails = () => {
       const fallback = "/assets/no-poster.png";
 
       return (
-```    <main className="details">
+    <main className="details">
       <nav className="details__nav">
         <Link to="/" className="details__back">← Back to Movies</Link>
       </nav>
-
       <section className="details__hero">
         <img
           src={posterUrl || fallback}
           alt={title}
           className="details__poster"
         />
-
         <div className="details__meta">
           <h1 className="details__title">
             {title} {year ? <span className="details__year">({year})</span> : null}
           </h1>
-
           <ul className="details__facts">
             {genre && <li><strong>Genre:</strong> {genre}</li>}
             {director && <li><strong>Director:</strong> {director}</li>}
             {runtimeMinutes ? <li><strong>Runtime:</strong> {runtimeMinutes} min</li> : null}
             <li><strong>IMDb ID:</strong> {imdbID}</li>
           </ul>
-
           <div className="details__aggregate">
             <div className="details__rating">
               <span className="rating__value">{averageRating?.toFixed?.(1) ?? "0.0"}</span>
@@ -103,40 +100,21 @@ const MovieDetails = () => {
           </div>
         </div>
       </section>
-
       {plot && (
         <section className="details__section">
           <h2 className="section__heading">Overview</h2>
           <p className="details__plot">{plot}</p>
         </section>
       )}
-
       <section className="details__section">
         <h2 className="section__heading">Reviews</h2>
-
         {totalReviews === 0 && (
           <p className="section__empty">No reviews yet. Be the first to review this movie.</p>
         )}
-
-        {user && !showReviewForm && (
         <button className="reviews_add">+ Add Review</button>
-        )}
-
-        {showReviewForm && (
-          <ReviewForm
-            movieId={movie._id || movie.imdbID} 
-            onSuccess={() => setShowReviewForm(false)}
-            onCancel={() => setShowReviewForm(false)}
-          />
-        )}
-
-        <ReviewList movieId={movie._id || movie.imdbID} />
       </section>
-
     </main>
-  );
-};
+  )
+}
 
-export default MovieDetails;`
-
-import './MovieDetails.css';
+export default MovieDetails;
