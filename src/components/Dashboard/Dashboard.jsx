@@ -97,15 +97,7 @@ const Dashboard = () => {
   return (
     <main className="dashboard">
      
-      <h1 className="dashboard__heading">
-        Welcome back{user?.username ? `, ${user.username}` : ""}!
-      </h1>
-      
       <section className="dashboard__section">
-        <header className="movies__header">
-          <h2 className="section__heading">Movies</h2>
-        </header>
-
         <form onSubmit={handleMovieSearchSubmit} className="movies__search">
           <input
             name="q"
