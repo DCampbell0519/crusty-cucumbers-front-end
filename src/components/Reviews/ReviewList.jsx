@@ -22,23 +22,6 @@ const ReviewList = ({ movieId }) => {
     }
   };
 
-  // Fetch movie details
-  const fetchMovie = async () => {
-    try {
-      const res = await fetch(`${API_BASE}/api/movies/${movieId}`);
-      if (!res.ok) throw new Error("Failed to fetch movie details");
-      const data = await res.json();
-      setMovie(data);
-    } catch (err) {
-      setError(err.message || "Failed to load movie details");
-    }
-  };
-
-  useEffect(() => {
-    fetchMovie();
-    fetchReviews();
-  }, [movieId]);
-
   const handleDelete = async (reviewId) => {
     if (!window.confirm("Are you sure you want to delete this review?")) return;
     try {
