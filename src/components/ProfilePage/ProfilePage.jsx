@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { getMyProfile } from '../../services/userService';
+import { useNavigate } from 'react-router';
 
 const ProfilePage = () => {
 
+  const navigate = useNavigate();
   const [myProfile, setMyProfile] = useState(null);
   const [message, setMessage] = useState("");
 
@@ -33,6 +35,7 @@ const ProfilePage = () => {
       <ul>Favorite Movie Quote: {myProfile.user.favoriteMovieQuote}</ul>
       <ul>Personal Bio: {myProfile.user.bio}</ul>
     </div>
+    <button onClick={() => navigate('/profile/edit')}>Edit Profile</button>
     </>
   )
 }
