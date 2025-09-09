@@ -8,17 +8,7 @@ const API_BASE = import.meta.env.VITE_BACK_END_URL || ""
 
 const Dashboard = () => {
   const { user } = useContext(UserContext)
-  const [users, setUsers] = useState([])
-
-  useEffect(() => {
-    const loadUsers = async () => {
-      const fetched = await fetchUsersIndex()
-      setUsers(fetched)
-    }
-    if (user) loadUsers()
-  }, [user])
-
-
+  
   const [movies, setMovies] = useState([])
   const [status, setStatus] = useState("idle")
   const [error, setError] = useState("")
@@ -110,23 +100,6 @@ const Dashboard = () => {
       <h1 className="dashboard__heading">
         Welcome back{user?.username ? `, ${user.username}` : ""}!
       </h1>
-
-     
-      <section className="dashboard__section">
-        <h2 className="section__heading">Users</h2>
-        {users.length === 0 ? (
-          <p className="section__empty">No users in the database</p>
-        ) : (
-          <ul className="users-list">
-            {users.map((u) => (
-              <li key={u._id} className="users-list__item">
-                {u.username}
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
-
       
       <section className="dashboard__section">
         <header className="movies__header">
