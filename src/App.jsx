@@ -7,6 +7,7 @@ import SignUpForm from "./components/SignUpForm/SignUpForm.jsx";
 import SignInForm from "./components/SignInForm/SignInForm.jsx";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
 import ProfilePage from "./components/ProfilePage/ProfilePage.jsx";
+import EditProfile from "./components/EditProfile/EditProfile.jsx";
 import Dashboard from "./components/Dashboard/Dashboard.jsx";
 import Landing from "./components/Landing/Landing.jsx";
 import MovieDetails from "./components/MovieDetails/MovieDetails.jsx";
@@ -22,6 +23,7 @@ function App() {
         <Route path='/sign-up' element={<SignUpForm />}/>
         <Route path='/sign-in' element={<SignInForm />}/>
         <Route path='/profile' element={<ProtectedRoute><ProfilePage /></ProtectedRoute>}></Route>
+        <Route path='/profile/edit' element={<ProtectedRoute><EditProfile /></ProtectedRoute>}></Route>
         <Route path='/movies/:imdbID' element={<MovieDetails />} />
       </Routes>
     </>
