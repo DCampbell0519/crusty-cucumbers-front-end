@@ -1,31 +1,30 @@
-/* MovieDetails.css */
 
-/* Container and layout */
 .details {
   max-width: 900px;
   margin: 2rem auto;
   padding: 1rem;
-  color: rgba(230, 255, 230, 0.9);
-  background-color: #0b1a0b; /* very dark green */
+  color: rgba(0, 0, 0, 0.9);
+  background-color: #0b1a0b; 
   border-radius: 8px;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-/* Navigation back link */
 .details__nav {
   margin-bottom: 1rem;
 }
 .details__back {
-  color: #7fff7f; /* light green */
+  color: #efecec;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
 }
 .details__back:hover {
-  color: #4caf50; /* medium green */
+  color: #4caf50; 
 }
 
-/* Hero section: poster + meta side by side */
+
 .details__hero {
   display: flex;
   gap: 2rem;
@@ -37,7 +36,7 @@
   width: 250px;
   border-radius: 8px;
   object-fit: cover;
-  box-shadow: 0 0 15px #4caf50aa; /* green glow */
+  box-shadow: 0 0 15px #4caf50aa; 
 }
 
 .details__meta {
@@ -48,25 +47,25 @@
 .details__title {
   font-size: 2rem;
   margin-bottom: 0.5rem;
-  color: #a5d6a7; /* pale green */
+  color: #a5d6a7; 
 }
 
 .details__year {
   font-weight: 400;
-  color: #8bc34a; /* medium light green */
+  color: #8bc34a; 
 }
 
 .details__facts {
   list-style: none;
   padding: 0;
   margin: 0.5rem 0 1rem 0;
-  color: #b2dfdb; /* soft greenish */
-}
+  color: #b2dfdb;
+} 
 .details__facts li {
   margin-bottom: 0.3rem;
 }
 
-/* Aggregate rating and reviews count */
+
 .details__aggregate {
   display: flex;
   gap: 2rem;
@@ -74,7 +73,7 @@
 }
 
 .details__rating, .details__reviews-count {
-  background-color: #144214; /* dark green */
+  background-color: #144214; 
   padding: 0.5rem 1rem;
   border-radius: 6px;
   text-align: center;
@@ -94,9 +93,10 @@
   color: #a5d6a7;
 }
 
-/* Overview section */
+
 .details__section {
   margin-bottom: 2rem;
+  color:#000000;
 }
 
 .section__heading {
@@ -104,16 +104,16 @@
   margin-bottom: 0.5rem;
   border-bottom: 2px solid #7fff7f;
   padding-bottom: 0.3rem;
-  color: #a5d6a7;
+  color: #3a9a3d;
 }
 
 .details__plot {
   font-size: 1rem;
   line-height: 1.5;
-  color: #c8e6c9;
+  color: #000000;
 }
 
-/* Reviews section */
+
 .reviews_add {
   background-color: #4caf50;
   color: white;
@@ -131,14 +131,14 @@
   box-shadow: 0 0 15px #388e3ccc;
 }
 
-/* Review list */
+
 section > ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-/* Review item */
+
 li {
   background-color: #144214;
   padding: 1rem;
@@ -156,7 +156,6 @@ li strong {
   color: #a5d6a7;
 }
 
-/* Review item buttons */
 button {
   background-color: transparent;
   border: 1px solid #7fff7f;
@@ -174,7 +173,7 @@ button:hover {
   color: #144214;
 }
 
-/* Review form */
+
 form {
   background-color: #144214;
   padding: 1rem;
@@ -219,4 +218,84 @@ form button {
 form button:hover {
   background-color: #388e3c;
   box-shadow: 0 0 15px #388e3ccc;
+}
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 1.25rem;                          
+  align-items: start;
+}
+
+
+@media (max-width: 1100px) {
+  .movies-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+@media (max-width: 640px) {
+  .movies-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.movie-card {
+  background: #144214;               
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px #00000025;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px #00000030;
+}
+
+.movie-card__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+
+.movie-card__poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;                
+  object-fit: cover;
+  display: block;
+}
+
+
+.movie-card__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: .5rem;
+  padding: .75rem .9rem 1rem;
+}
+
+.movie-card__title {
+  font-weight: 700;
+  color: #a5d6a7;                       
+  font-size: 1rem;
+  white-space: nowrap;                 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.movie-card__year {
+  color: #7fff7f;
+  font-size: .9rem;
+  opacity: .85;
 }
