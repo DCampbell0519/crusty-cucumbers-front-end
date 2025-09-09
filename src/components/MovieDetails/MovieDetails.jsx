@@ -1,49 +1,56 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { useParams, Link } from "react-router-dom"
+import ReviewList from "../Reviews/ReviewList.jsx";
+import ReviewForm from "../Reviews/ReviewForm.jsx";
+import { UserContext } from "../../contexts/UserContext.jsx";
 
-const API_BASE = import.meta.env.VITE_BACK_END_URL || ""
+
+const API_BASE = import.meta.env.VITE_BACK_END_URL || "";
 
 const MovieDetails = () => {
-    const { imdbID } = useParams()
+    const { imdbID } = useParams();
+    const { user } = useContext(UserContext);
 
-      const [movie, setMovie] = useState(null)
-      const [status, setStatus] = useState("idle")
-      const [error, setError] = useState("")
+      const [movie, setMovie] = useState(null);
+      const [status, setStatus] = useState("idle");
+      const [error, setError] = useState("");
+      const [showReviewForm, setShowReviewForm] = useState(false);
 
       const getJSON = async (url) => {
-        const res = await fetch(url)
-        const type = res.headers.get("content-type") || ""
-        if(!res.ok || !type.includes("application/json")) {
-            const text = await res.text()
-            throw new Error(`Bad response (${res.status}): ${text.slice(0,120)}...`)
+        const res = await fetch(url);
+        const type = res.headers.get("content-type") || "";
+        if(!res.ok || !type.includes("application/json")) {;
+            const text = await res.text();
+            throw new Error(`Bad response (${res.status}): ${text.slice(0,120)}...`);
         }
-        return res.json()
-      }
+        return res.json();
+      };
 
       useEffect(() => {
-        let ignore = false
+        let ignore = false;
 
         const load = async () => {
             try {
-                setStatus("loading")
-                setError("")
-                const data = await getJSON(`${API_BASE}/api/movies/${imdbID}`)
-                if (ignore) return
-                setMovie(data)
-                setStatus("idle")
+                setStatus("loading");
+                setError("");
+                const data = await getJSON(`${API_BASE}/api/movies/${imdbID}`);
+                if (ignore) return;
+                setMovie(data);
+                setStatus("idle");
             } catch (e) {
-                if (ignore) return
-                setError(e.message || "Failed to load movie")
-                setStatus("error")
+                if (ignore) return;
+                setError(e.message || "Failed to load movie");
+                setStatus("error");
             }
         }
-        if (imdbID) load()
-        return () => { ignore = true }
-      }, [API_BASE, imdbID])
+        if (imdbID) load();
+        return () => {
+           ignore = true };
+      }, [API_BASE, imdbID]);
 
-      if (status === "loading") return <main className="details"><p className="state state--loading">Loading...</p></main>
-      if (status === "error") return <main className="details"><p className="state state--error">Error: {error}</p></main>
-      if (!movie) return null
+      if (status === "loading") return ( <main className="details"><p className="state state--loading">Loading...</p></main> );
+      if (status === "error") return ( <main className="details"><p className="state state--error">Error: {error}</p></main> );
+      if (!movie) return null;
 
       const {
         title,
@@ -55,12 +62,12 @@ const MovieDetails = () => {
         runtimeMinutes,
         averageRating, 
         totalReviews,
-      } = movie
+      } = movie;
 
-      const fallback = "/assets/no-poster.png"
+      const fallback = "/assets/no-poster.png";
 
       return (
-    <main className="details">
+```    <main className="details">
       <nav className="details__nav">
         <Link to="/" className="details__back">← Back to Movies</Link>
       </nav>
@@ -110,11 +117,26 @@ const MovieDetails = () => {
         {totalReviews === 0 && (
           <p className="section__empty">No reviews yet. Be the first to review this movie.</p>
         )}
+
+        {user && !showReviewForm && (
         <button className="reviews_add">+ Add Review</button>
+        )}
+
+        {showReviewForm && (
+          <ReviewForm
+            movieId={movie._id || movie.imdbID} 
+            onSuccess={() => setShowReviewForm(false)}
+            onCancel={() => setShowReviewForm(false)}
+          />
+        )}
+
+        <ReviewList movieId={movie._id || movie.imdbID} />
       </section>
 
     </main>
-  )
-}
+  );
+};
 
-export default MovieDetails
+export default MovieDetails;`
+
+import './MovieDetails.css';
