@@ -34,7 +34,7 @@ const ReviewList = ({ movieId }) => {
 
   const handleAddClick = () => {
     setAddingReview(true);
-    setEditingReviewId(null); 
+    setEditingReviewId(null);
   };
 
   const handleAddCancel = () => {
@@ -48,7 +48,7 @@ const ReviewList = ({ movieId }) => {
 
   const handleEditClick = (reviewId) => {
     setEditingReviewId(reviewId);
-    setAddingReview(false); 
+    setAddingReview(false);
   };
 
   const handleCancelEdit = () => {
@@ -60,58 +60,59 @@ const ReviewList = ({ movieId }) => {
     fetchReviews();
   };
 
-return (
-  <section>
-    <h3>Reviews</h3>
-    {error && <p style={{ color: "red" }}>{error}</p>}
+  return (
+    <section>
+      <h3>Reviews</h3>
+      {error && <p style={{ color: "red" }}>{error}</p>}
 
-    {reviews.length === 0 && <p>No reviews yet.</p>}
-    <ul style={{ listStyle: "none", padding: 0 }}>
-      {reviews.map((review) =>
-        editingReviewId === review._id ? (
-          <li key={review._id}>
-            <ReviewForm
-              movieId={movieId}
-              existingReview={review}
-              onSuccess={handleEditSuccess}
-              onCancel={handleCancelEdit}
-            />
-          </li>
-        ) : (
-          <li
-            key={review._id}
-            style={{
-              marginBottom: "1rem",
-              borderBottom: "1px solid #ccc",
-              paddingBottom: "0.5rem",
-            }}
-          >
-            <p>
-              <strong>{review.userId?.username || "Unknown User"}</strong> rated:{" "}
-              {review.rating}/10
-            </p>
-            <p>{review.reviewText}</p>
-            <p style={{ fontSize: "0.8rem", color: "#666" }}>
-              {new Date(review.createdAt).toLocaleString()}
-            </p>
-            {user && user._id === review.userId?._id && (
-              <>
-                <button onClick={() => handleEditClick(review._id)}>Edit</button>
-                <button
-                  onClick={() => handleDelete(review._id)}
-                  style={{ marginLeft: "0.5rem" }}
-                >
-                  Delete
-                </button>
-              </>
-            )}
-          </li>
-        )
-      )}
-    </ul>
-  </section>
-);
-
+      {reviews.length === 0 && <p>No reviews yet.</p>}
+      <ul style={{ listStyle: "none", padding: 0 }}>
+        {reviews.map((review) =>
+          editingReviewId === review._id ? (
+            <li key={review._id}>
+              <ReviewForm
+                movieId={movieId}
+                existingReview={review}
+                onSuccess={handleEditSuccess}
+                onCancel={handleCancelEdit}
+              />
+            </li>
+          ) : (
+            <li
+              key={review._id}
+              style={{
+                marginBottom: "1rem",
+                borderBottom: "1px solid #ccc",
+                paddingBottom: "0.5rem",
+              }}
+            >
+              <p>
+                <strong>{review.userId?.username || "Unknown User"}</strong>{" "}
+                rated: {review.rating}/10
+              </p>
+              <p>{review.reviewText}</p>
+              <p style={{ fontSize: "0.8rem", color: "#666" }}>
+                {new Date(review.createdAt).toLocaleString()}
+              </p>
+              {user && user._id === review.userId?._id && (
+                <>
+                  <button onClick={() => handleEditClick(review._id)}>
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(review._id)}
+                    style={{ marginLeft: "0.5rem" }}
+                  >
+                    Delete
+                  </button>
+                </>
+              )}
+            </li>
+          )
+        )}
+      </ul>
+    </section>
+  );
 };
 
 export default ReviewList;

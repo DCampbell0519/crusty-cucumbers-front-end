@@ -20,8 +20,16 @@ const SignUpForm = () => {
 
   const { setUser } = useContext(UserContext);
 
-  const { email, username, password, passwordConf, favoriteMovieQuote, bio, age, profilePhoto } =
-    formData;
+  const {
+    email,
+    username,
+    password,
+    passwordConf,
+    favoriteMovieQuote,
+    bio,
+    age,
+    profilePhoto,
+  } = formData;
 
   const handleChange = (event) => {
     setMessage("");
@@ -41,12 +49,7 @@ const SignUpForm = () => {
   };
 
   const isFormInvalid = () => {
-    return !(
-      email &&
-      username &&
-      password &&
-      password === passwordConf
-    );
+    return !(email && username && password && password === passwordConf);
   };
 
   return (

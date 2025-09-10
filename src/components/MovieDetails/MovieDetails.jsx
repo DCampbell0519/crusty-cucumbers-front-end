@@ -1,9 +1,9 @@
-import { useEffect, useState, useContext } from "react"
-import { useParams, Link } from "react-router-dom"
+import { useEffect, useState, useContext } from "react";
+import { useParams, Link } from "react-router-dom";
 import ReviewList from "../Reviews/ReviewList.jsx";
 import ReviewForm from "../Reviews/ReviewForm.jsx";
 import { UserContext } from "../../contexts/UserContext.jsx";
-import './MovieDetails.css';
+import "./MovieDetails.css";
 
 const API_BASE = import.meta.env.VITE_BACK_END_URL || "";
 
@@ -158,13 +158,16 @@ const MovieDetails = () => {
             movieId={movie._id || movie.imdbID}
             onSuccess={() => {
               setShowReviewForm(false);
-              setRefreshReviews((prev) => !prev); 
+              setRefreshReviews((prev) => !prev);
             }}
             onCancel={() => setShowReviewForm(false)}
           />
         )}
 
-        <ReviewList movieId={movie._id || movie.imdbID} refresh={refreshReviews} />
+        <ReviewList
+          movieId={movie._id || movie.imdbID}
+          refresh={refreshReviews}
+        />
       </section>
     </main>
   );

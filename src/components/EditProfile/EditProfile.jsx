@@ -47,6 +47,7 @@ const EditProfile = () => {
       setMessage(error.message);
     }
   };
+
   return (
     <main>
       <h1>What would you like to update?</h1>
