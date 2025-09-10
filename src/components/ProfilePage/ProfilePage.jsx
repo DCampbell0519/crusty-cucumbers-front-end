@@ -34,7 +34,7 @@ const ProfilePage = () => {
         <ul>Favorite Movie Quote: {myProfile.user.favoriteMovieQuote}</ul>
         <ul>Personal Bio: {myProfile.user.bio}</ul>
       </div>
-      <button onClick={() => navigate("/profile/edit")}>Edit Profile</button>
+      <button className="edit-profile" onClick={() => navigate("/profile/edit")}>Edit Profile</button>
     </>
   );
 };
