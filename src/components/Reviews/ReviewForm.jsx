@@ -5,7 +5,9 @@ import { createReview, updateReview } from "../../services/reviewService.js";
 const ReviewForm = ({ movieId, existingReview, onSuccess, onCancel }) => {
   const { user } = useContext(UserContext);
   const [rating, setRating] = useState(existingReview?.rating || 1);
-  const [reviewText, setReviewText] = useState(existingReview?.reviewText || "");
+  const [reviewText, setReviewText] = useState(
+    existingReview?.reviewText || ""
+  );
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
@@ -28,7 +30,10 @@ const ReviewForm = ({ movieId, existingReview, onSuccess, onCancel }) => {
     <form onSubmit={handleSubmit}>
       <label>
         Rating:
-        <select value={rating} onChange={(e) => setRating(Number(e.target.value))}>
+        <select
+          value={rating}
+          onChange={(e) => setRating(Number(e.target.value))}
+        >
           {[...Array(10)].map((_, i) => (
             <option key={i + 1} value={i + 1}>
               {i + 1}
@@ -49,7 +54,9 @@ const ReviewForm = ({ movieId, existingReview, onSuccess, onCancel }) => {
       </label>
       <br />
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <button type="submit">{existingReview ? "Update" : "Submit"} Review</button>
+      <button type="submit">
+        {existingReview ? "Update" : "Submit"} Review
+      </button>
       {onCancel && (
         <button type="button" onClick={onCancel} style={{ marginLeft: "1rem" }}>
           Cancel

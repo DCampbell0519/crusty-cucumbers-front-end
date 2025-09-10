@@ -11,7 +11,7 @@ const SignInForm = () => {
     password: "",
   });
 
-  const { setUser } = useContext(UserContext)
+  const { setUser } = useContext(UserContext);
   const { username, password } = formData;
 
   const handleChange = (event) => {
@@ -62,8 +62,8 @@ const SignInForm = () => {
           />
         </div>
         <div>
-            <button disabled={isFormInvalid()}>Sign In</button>
-            <button onClick={() => navigate('/')}>Cancel</button>
+          <button disabled={isFormInvalid()}>Sign In</button>
+          <button onClick={() => navigate("/")}>Cancel</button>
         </div>
       </form>
     </main>

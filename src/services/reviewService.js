@@ -3,7 +3,7 @@ const BASE_URL = `${import.meta.env.VITE_BACK_END_URL}/api`;
 const getReviews = async (movieId) => {
   try {
     const res = await fetch(`${BASE_URL}/movies/${movieId}/reviews`);
-    if (!res.ok) throw new Error('Failed to fetch reviews');
+    if (!res.ok) throw new Error("Failed to fetch reviews");
     return await res.json();
   } catch (error) {
     console.error(error);
@@ -14,16 +14,16 @@ const getReviews = async (movieId) => {
 const createReview = async (movieId, reviewData) => {
   try {
     const res = await fetch(`${BASE_URL}/movies/${movieId}/reviews`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(reviewData),
     });
     if (!res.ok) {
       const data = await res.json();
-      throw new Error(data.error || 'Failed to create review');
+      throw new Error(data.error || "Failed to create review");
     }
     return await res.json();
   } catch (error) {
@@ -35,16 +35,16 @@ const createReview = async (movieId, reviewData) => {
 const updateReview = async (reviewId, reviewData) => {
   try {
     const res = await fetch(`${BASE_URL}/reviews/${reviewId}`, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(reviewData),
     });
     if (!res.ok) {
       const data = await res.json();
-      throw new Error(data.error || 'Failed to update review');
+      throw new Error(data.error || "Failed to update review");
     }
     return await res.json();
   } catch (error) {
@@ -56,14 +56,14 @@ const updateReview = async (reviewId, reviewData) => {
 const deleteReview = async (reviewId) => {
   try {
     const res = await fetch(`${BASE_URL}/reviews/${reviewId}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
     if (!res.ok) {
       const data = await res.json();
-      throw new Error(data.error || 'Failed to delete review');
+      throw new Error(data.error || "Failed to delete review");
     }
     return await res.json();
   } catch (error) {
@@ -72,9 +72,4 @@ const deleteReview = async (reviewId) => {
   }
 };
 
-export {
-  getReviews,
-  createReview,
-  updateReview,
-  deleteReview,
-};
+export { getReviews, createReview, updateReview, deleteReview };

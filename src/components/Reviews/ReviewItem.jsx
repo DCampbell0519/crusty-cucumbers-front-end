@@ -20,7 +20,10 @@ const ReviewItem = ({ review, isOwner, onEdit, onDelete }) => {
       {isOwner && (
         <>
           <button onClick={() => onEdit(review._id)}>Edit</button>
-          <button onClick={() => onDelete(review._id)} style={{ marginLeft: "0.5rem" }}>
+          <button
+            onClick={() => onDelete(review._id)}
+            style={{ marginLeft: "0.5rem" }}
+          >
             Delete
           </button>
         </>
