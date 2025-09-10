@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../contexts/UserContext.jsx";
 import { getReviews, deleteReview } from "../../services/reviewService.js";
+import ReviewForm from "./ReviewForm.jsx";
 
 const ReviewList = ({ movieId }) => {
   const { user } = useContext(UserContext);
