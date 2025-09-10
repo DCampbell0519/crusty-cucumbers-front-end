@@ -20,7 +20,7 @@ const ReviewList = ({ movieId }) => {
 
   useEffect(() => {
     fetchReviews();
-  }, [movieId, refresh]);
+  }, [reviews,]);
 
   const handleDelete = async (reviewId) => {
     if (!window.confirm("Are you sure you want to delete this review?")) return;
