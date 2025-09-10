@@ -15,7 +15,7 @@
 .user-profile {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: black;
-    background-color: rgb(66, 173, 105);
+    background-color: rgb(52, 169, 95);
     padding: 1rem 1.5rem;
     margin: 10px 0 0 5px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -154,4 +154,7 @@ section {
   color: #1b3a1b;
   margin-bottom: 2rem;
   max-width: 600px;
+}
+.edit-profile {
+    background-color: #1b3a1b;
 }
